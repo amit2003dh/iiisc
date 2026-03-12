@@ -1,0 +1,805 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes wiggleAround {
+    from {
+        transform: perspective(9cm) rotateY(350deg);
+    }
+
+    to {
+        transform: perspective(9cm) rotateY(335deg);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(79, 45, 255, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(79, 45, 255, 0.6);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.wiggle-around {
+    animation: wiggleAround 2s ease-in-out infinite alternate;
+}
+
+/* Modern Fintech Design System */
+:root {
+    --primary-gradient: linear-gradient(135deg, #1a1a2e 0%, #2d1b69 50%, #1e293b 100%);
+    --primary-gradient-hover: linear-gradient(135deg, #2d1b69 0%, #1e293b 50%, #1a1a2e 100%);
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --shadow-large: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --shadow-glow: 0 0 30px rgba(26, 26, 46, 0.4);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #4F2DFF, #7B61FF, #B197FC);
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(79, 45, 255, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(123, 97, 255, 0.12) 0%, transparent 50%),
+        radial-gradient(circle at 40% 20%, rgba(177, 151, 252, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 60% 70%, rgba(79, 45, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(123, 97, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Gradient Blobs */
+.gradient-blob-1 {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(79, 45, 255, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(40px);
+    top: 10%;
+    left: 5%;
+    animation: float-blob 20s ease-in-out infinite;
+}
+
+.gradient-blob-2 {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(123, 97, 255, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(30px);
+    top: 60%;
+    right: 10%;
+    animation: float-blob 25s ease-in-out infinite reverse;
+}
+
+.gradient-blob-3 {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(177, 151, 252, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(35px);
+    bottom: 20%;
+    left: 15%;
+    animation: float-blob 30s ease-in-out infinite;
+}
+
+@keyframes float-blob {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -20px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 30px) scale(0.9);
+    }
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: var(--shadow-large);
+}
+
+/* Modern Button Styles */
+.btn-fintech {
+    background: var(--primary-gradient);
+    border-radius: 9999px;
+    padding: 12px 32px;
+    font-weight: 600;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(79, 45, 255, 0.3);
+}
+
+.btn-fintech:hover {
+    background: var(--primary-gradient-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+    animation: glow 2s ease-in-out infinite;
+}
+
+.btn-fintech-outline {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 9999px;
+    padding: 12px 32px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.btn-fintech-outline:hover {
+    background: var(--glass-bg);
+    border-color: rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-large);
+}
+
+/* Text Gradients */
+.text-gradient-fintech {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient-fintech:hover {
+    background: var(--primary-gradient-hover);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Utility Classes */
+.floating {
+    animation: float 3s ease-in-out infinite;
+}
+
+.glass-morphism {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+.rounded-fintech {
+    border-radius: 16px;
+}
+
+.shadow-fintech {
+    box-shadow: var(--shadow-large);
+}
+
+.shadow-glow-effect {
+    box-shadow: var(--shadow-glow);
+}
+
+/* Legacy compatibility */
+.grayscale-logo {
+    filter: grayscale(100%);
+}
+
+.text-gradient {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background-color 0.5s ease;
+}
+
+.text-india {
+    background: linear-gradient(135deg, #fa7d00 0%, #FFFFFF 50%, #0a7b00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background-color 0.5s ease;
+    filter: drop-shadow(0 0 3px #000);
+}
+
+.text-gradient:hover {
+    background: var(--primary-gradient-hover);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.bg-gradient {
+    background: var(--primary-gradient);
+    transition: background-color 0.5s ease;
+    color: #fff;
+}
+
+.bg-gradient:hover {
+    background: var(--primary-gradient-hover);
+}
+
+.choropleth path {
+    @apply stroke-zinc-400 dark:stroke-zinc-600;
+    stroke-width: 1px;
+}
+
+.sankey path {
+    mix-blend-mode: normal !important;
+}
+
+.btn-accent {
+    @apply btn-fintech;
+}
+
+.btn-outline {
+    @apply btn-fintech-outline;
+}
+
+/* Content positioning */
+.content-relative {
+    position: relative;
+    z-index: 10;
+}
+
+/* Hero Section Styles */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 160px 8%;
+    color: white;
+    min-height: 100vh;
+    gap: 80px;
+}
+
+.hero-left {
+    flex: 1;
+    max-width: 700px;
+}
+
+.hero-left h1 {
+    font-size: 72px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 32px;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+}
+
+.hero-left p {
+    font-size: 22px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 400;
+    letter-spacing: 0.01em;
+}
+
+.hero-right {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 600px;
+    position: relative;
+}
+
+/* Phone Glow Effect */
+.phone-mockup::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    background: radial-gradient(circle, rgba(79, 45, 255, 0.3) 0%, transparent 70%);
+    border-radius: 24px;
+    filter: blur(20px);
+    z-index: -1;
+    animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* Consistent Card Shadows */
+.card-floating {
+    position: absolute;
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    animation: float 6s ease-in-out infinite;
+    z-index: 20;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-balance {
+    width: 220px;
+    animation-delay: 0s;
+}
+
+.card-transaction {
+    width: 260px;
+    animation-delay: 2s;
+}
+
+.card-users {
+    width: 220px;
+    animation-delay: 4s;
+}
+
+.phone-mockup {
+    width: 320px;
+    z-index: 10;
+    box-shadow: 0 30px 60px rgba(79, 45, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Enhanced Mobile Dashboard */
+.mobile-dashboard {
+    background: white;
+    border-radius: 24px;
+    padding: 24px;
+    height: 620px;
+    overflow-y: auto;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.actions {
+    display: flex;
+    gap: 16px;
+}
+
+.action-btn {
+    flex: 1;
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 16px;
+    padding: 18px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 15px 30px rgba(79, 45, 255, 0.25);
+}
+
+.user-avatars {
+    background: #f8fafc;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.transactions-section {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.transactions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f1f5f9;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Section Spacing */
+.stats-section {
+    padding: 120px 0;
+}
+
+.partners-section {
+    padding: 120px 0;
+}
+
+.team-section {
+    padding: 120px 0;
+}
+
+.footer-section {
+    padding: 120px 0 0 0;
+}
+
+/* Floating Fintech Cards */
+.card-floating {
+    position: absolute;
+    background: white;
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: float 6s ease-in-out infinite;
+    z-index: 20;
+}
+
+.card-balance {
+    width: 200px;
+    animation-delay: 0s;
+}
+
+.card-transaction {
+    width: 240px;
+    animation-delay: 2s;
+}
+
+.card-users {
+    width: 200px;
+    animation-delay: 4s;
+}
+
+.phone-mockup {
+    width: 280px;
+    z-index: 10;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Modern SaaS Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.08);
+    z-index: 50;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.cta-primary {
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 9999px;
+    padding: 10px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(79, 45, 255, 0.3);
+}
+
+.cta-primary:hover {
+    background: var(--primary-gradient-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-glow);
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Add top padding to body to account for fixed navbar */
+body {
+    padding-top: 64px; /* Height of navbar */
+}
+
+/* Mobile Dashboard UI */
+.mobile-dashboard {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    height: 600px;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e2e8f0;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+}
+
+.action-btn {
+    flex: 1;
+    background: var(--primary-gradient);
+    border: none;
+    border-radius: 12px;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Modern Micro-interactions */
+.action-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(79, 45, 255, 0.3);
+}
+
+.card-floating:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+}
+
+.transaction-item:hover {
+    transform: translateX(4px);
+    background: rgba(79, 45, 255, 0.02);
+}
+
+.user-avatars .w-10:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(79, 45, 255, 0.2);
+}
+
+.balance-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(79, 45, 255, 0.15);
+}
+
+.cta-primary:hover {
+    background: var(--primary-gradient-hover);
+    transform: translateY(-1px) scale(1.05);
+    box-shadow: var(--shadow-glow);
+    animation: glow 2s ease-in-out infinite;
+}
+
+.cta:hover {
+    background: var(--primary-gradient-hover);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: var(--shadow-glow);
+    animation: glow 2s ease-in-out infinite;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* Apply smooth transitions to all interactive elements */
+.action-btn,
+.card-floating,
+.transaction-item,
+.user-avatars .w-10,
+.balance-card,
+.cta-primary,
+.cta,
+.glass-card {
+    transition: all 0.3s ease;
+}
+
+.send-btn {
+    background: var(--primary-gradient);
+}
+
+.request-btn {
+    background: transparent;
+    border: 2px solid #4F2DFF;
+    color: #4F2DFF;
+}
+
+.request-btn:hover {
+    background: rgba(79, 45, 255, 0.1);
+}
+
+.user-avatars {
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.transactions-section {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #e2e8f0;
+}
+
+.transactions {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.transaction-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column;
+        padding: 80px 6%;
+        text-align: center;
+        gap: 60px;
+    }
+    
+    .hero-left {
+        max-width: 100%;
+    }
+    
+    .hero-left h1 {
+        font-size: 48px;
+    }
+    
+    .hero-right {
+        max-width: 100%;
+        position: relative;
+        min-height: 400px;
+    }
+    
+    .card-floating {
+        position: relative;
+        margin: 10px auto;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        bottom: auto !important;
+        transform: none !important;
+    }
+    
+    .card-balance,
+    .card-transaction,
+    .card-users {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .phone-mockup {
+        position: relative;
+        transform: none !important;
+        top: auto !important;
+        left: auto !important;
+        margin: 20px auto;
+        width: 320px;
+    }
+    
+    .mobile-dashboard {
+        height: 500px;
+        padding: 16px;
+    }
+    
+    .navbar .container {
+        padding: 0 16px;
+    }
+}
+
+@media (max-width: 640px) {
+    .hero {
+        padding: 60px 4%;
+        gap: 40px;
+    }
+    
+    .hero-left h1 {
+        font-size: 36px;
+    }
+    
+    .hero-left p {
+        font-size: 18px;
+    }
+    
+    .cta {
+        padding: 14px 32px;
+        font-size: 16px;
+    }
+    
+    .card-floating {
+        padding: 12px;
+        margin: 8px auto;
+    }
+    
+    .navbar .container {
+        padding: 0 12px;
+    }
+    
+    .cta-primary {
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+    
+    .phone-mockup {
+        width: 280px;
+    }
+    
+    .mobile-dashboard {
+        height: 450px;
+        padding: 12px;
+    }
+    
+    .balance-card {
+        padding: 16px;
+    }
+    
+    .action-btn {
+        padding: 12px 16px;
+        font-size: 13px;
+    }
+    
+    .user-avatars,
+    .transactions-section {
+        padding: 12px;
+    }
+}
